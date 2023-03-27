@@ -17,10 +17,10 @@ steps:
     
   # Copy to bucket
   - name: 'gcr.io/cloud-builders/gcloud'
-     entrypoint: 'bash'
-     args:
-   - '-c'
-   - 'gsutil cp target/myapp-1.0-SNAPSHOT.jar gs://simran90215/'
+    entrypoint: 'bash'
+    args:
+    - '-c'
+    - 'gsutil cp target/myapp-1.0-SNAPSHOT.jar gs://simran90215/'
 
 
 
