@@ -11,11 +11,10 @@ steps:
   # Generate the artifact named myartifact.jar
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
-      - 'artifact'
-      - 'create'
-      - '--quiet'
-      - '--project=${PROJECT_ID}'
-      - '--location=us-west4-b'
-      - '--bucket=${PROJECT_ID}.appspot.com'
-      - '--name=myartifact.jar'
-      - '--file=target/myartifact.jar'
+    - 'builds'
+    - 'submit'
+    - '--quiet'
+    - '--project=${PROJECT_ID}'
+    - '--tag=gcr.io/${PROJECT_ID}/myartifact'
+    - '.'
+
