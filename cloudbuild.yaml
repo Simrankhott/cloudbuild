@@ -7,3 +7,17 @@ steps:
   - name: 'maven:3-jdk-11'
     entrypoint: 'mvn'
     args: ['clean', 'package']
+
+  # Copy the generated artifact to the new directory
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+    - '-c'
+    - 'cp target/myartifact.jar new/'
+
+  # List the contents of the new directory
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'ls'
+    args:
+    - '-l'
+    - 'new/'
