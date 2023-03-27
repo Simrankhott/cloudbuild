@@ -15,9 +15,17 @@ steps:
     - '-c'
     - 'cp target/myartifact.jar new/'
 
-  # List the contents of the new directory
+  # Generate the artifact named myartifact.jar
   - name: 'gcr.io/cloud-builders/gcloud'
-    entrypoint: 'ls'
     args:
-    - '-l'
-    - 'new/'
+    - 'builds'
+    - 'submit'
+    - '--quiet'
+    - '--project=${PROJECT_ID}'
+    - '--tag=gcr.io/${PROJECT_ID}/myartifact'
+    - 'new/Dockerfile'
+
+artifacts:
+  objects:
+    location: 'gs://${PROJECT_ID}-artifacts'
+    paths: ['**/*']
