@@ -1,7 +1,7 @@
 steps:
   # Remove existing files in the current working directory
-  - name: 'gcr.io/cloud-builders/bash'
-    entrypoint: 'bash'
+  - name: 'alpine'
+    entrypoint: 'sh'
     args:
       - '-c'
       - 'rm -rf *'
