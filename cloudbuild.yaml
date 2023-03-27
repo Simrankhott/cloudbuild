@@ -9,11 +9,11 @@ steps:
     args: ['clean', 'package']
 
   # Copy the generated artifact to the new directory
-- name: 'gcr.io/cloud-builders/gcloud'
-  entrypoint: 'bash'
-  args:
-  - '-c'
-  - 'cp target/myapp-1.0-SNAPSHOT.jar new/'
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+    - '-c'
+    - 'cp target/myapp-1.0-SNAPSHOT.jar new/'
 
 
     
