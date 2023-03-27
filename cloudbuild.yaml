@@ -1,31 +1,21 @@
 steps:
   # Checkout the source code from GitHub
   - name: 'gcr.io/cloud-builders/git'
-    args: ['clone', '--branch', 'master', 'https://github.com/Simrankhott/cloudbuild.git', '.']
+    args: ['clone', '--branch', 'main', 'https://github.com/Simrankhott/cloudbuild.git', 'new']
 
   # Build the application using Maven
   - name: 'maven:3-jdk-11'
     entrypoint: 'mvn'
     args: ['clean', 'package']
 
-  # Build the Docker image
-  - name: 'gcr.io/cloud-builders/docker'
+  # Generate the artifact named myartifact.jar
+  - name: 'gcr.io/cloud-builders/gcloud'
     args:
-      - 'build'
-      - '-t'
-      - 'gcr.io/${PROJECT_ID}/myimage:${COMMIT_SHA}'
-      - '.'
-  
-  # Push the Docker image to Google Container Registry
-  - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - 'push'
-      - 'gcr.io/${PROJECT_ID}/myimage:${COMMIT_SHA}'
-  
-  # Deploy the Docker image to Google Kubernetes Engine
-  - name: 'gcr.io/cloud-builders/kubectl'
-    args:
-      - 'set'
-      - 'image'
-      - 'deployment/mydeployment'
-      - 'mycontainer=gcr.io/${PROJECT_ID}/myimage:${COMMIT_SHA}'
+      - 'artifact'
+      - 'create'
+      - '--quiet'
+      - '--project=${PROJECT_ID}'
+      - '--location=us-west4-b'
+      - '--bucket=${PROJECT_ID}.appspot.com'
+      - '--name=myartifact.jar'
+      - '--file=target/myartifact.jar'
