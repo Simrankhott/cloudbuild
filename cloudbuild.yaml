@@ -1,0 +1,19 @@
+steps:
+  # Checkout the source code from GitHub
+  - name: 'gcr.io/cloud-builders/git'
+    args: ['clone', '--branch', 'master', 'https://github.com/Simrankhott/cloudbuild.git', '.']
+  # Build the application using Maven
+  - name: 'maven:3-jdk-11'
+    entrypoint: 'mvn'
+    args: ['clean', 'package']
+  # Generate the artifact named myartifact.jar
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'artifact'
+      - 'create'
+      - '--quiet'
+      - '--project=${PROJECT_ID}'
+      - '--location=us-west4-b'
+      - '--bucket=${PROJECT_ID}.appspot.com'
+      - '--name=myartifact.jar'
+      - '--file=target/myartifact.jar'
