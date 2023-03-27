@@ -1,3 +1,4 @@
+steps:
 # Checkout the source code from GitHub
 - name: 'gcr.io/cloud-builders/git'
   args: ['clone', '--branch', 'main', 'https://github.com/Simrankhott/cloudbuild.git', 'new-directory']
