@@ -7,13 +7,3 @@ steps:
   - name: 'maven:3-jdk-11'
     entrypoint: 'mvn'
     args: ['clean', 'package']
-
-  # Generate the artifact named myartifact.jar
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args:
-    - 'builds'
-    - 'submit'
-    - '--quiet'
-    - '--project=${PROJECT_ID}'
-    - '--tag=gcr.io/${PROJECT_ID}/myartifact'
-    - 'new/Dockerfile'
