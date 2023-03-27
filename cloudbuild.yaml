@@ -16,5 +16,4 @@ steps:
     - '--quiet'
     - '--project=${PROJECT_ID}'
     - '--tag=gcr.io/${PROJECT_ID}/myartifact'
-    - '--config'
     - 'new/Dockerfile'
