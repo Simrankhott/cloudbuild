@@ -1,7 +1,7 @@
 steps:
 # Checkout the source code from GitHub
 - name: 'gcr.io/cloud-builders/git'
-  args: ['clone', '--branch', 'main', 'https://github.com/Simrankhott/cloudbuild.git', 'new']
+  args: ['clone', '--branch', 'master', 'https://github.com/Simrankhott/cloudbuild.git', 'new']
 
 # Change to the new directory
 - name: 'gcr.io/cloud-builders/bash'
