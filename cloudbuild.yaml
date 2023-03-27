@@ -7,7 +7,7 @@ steps:
       - 'rm -rf *'
   # Checkout the source code from GitHub
   - name: 'gcr.io/cloud-builders/git'
-    args: ['clone', '--branch', 'master', 'https://github.com/Simrankhott/cloudbuild.git', '.']
+    args: ['clone', '--branch', 'main', 'https://github.com/Simrankhott/cloudbuild.git', '.']
   # Build the application using Maven
   - name: 'maven:3-jdk-11'
     entrypoint: 'mvn'
@@ -28,7 +28,7 @@ steps:
     args:
       - 'build'
       - '-t'
-      - 'gcr.io/myproject827740/myimage:v1.0'
+      - 'gcr.io/myproject827740/myimage:v1'
       - '-f'
       - 'Dockerfile'
       - '.'
@@ -36,4 +36,4 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
-      - 'gcr.io/myproject827740/myimage:v1.0'
+      - 'gcr.io/myproject827740/myimage:v1'
