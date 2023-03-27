@@ -1,19 +1,27 @@
-steps:
-  # Checkout the source code from GitHub
-  - name: 'gcr.io/cloud-builders/git'
-    args: ['clone', '--branch', 'main', 'https://github.com/Simrankhott/cloudbuild.git', '.']
-  # Build the application using Maven
-  - name: 'maven:3-jdk-11'
-    entrypoint: 'mvn'
-    args: ['clean', 'package']
-  # Generate the artifact named myartifact.jar
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args:
-      - 'artifact'
-      - 'create'
-      - '--quiet'
-      - '--project=${PROJECT_ID}'
-      - '--location=us-west4-b'
-      - '--bucket=${PROJECT_ID}.appspot.com'
-      - '--name=myartifact.jar'
-      - '--file=target/myartifact.jar'
+# Checkout the source code from GitHub
+- name: 'gcr.io/cloud-builders/git'
+  args: ['clone', '--branch', 'main', 'https://github.com/Simrankhott/cloudbuild.git', 'new-directory']
+
+# Change to the new directory
+- name: 'gcr.io/cloud-builders/bash'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - 'cd new'
+
+# Build the application using Maven in the new directory
+- name: 'maven:3-jdk-11'
+  entrypoint: 'mvn'
+  args: ['clean', 'package']
+
+# Generate the artifact named myartifact.jar in the new directory
+- name: 'gcr.io/cloud-builders/gcloud'
+  args:
+    - 'artifact'
+    - 'create'
+    - '--quiet'
+    - '--project=${PROJECT_ID}'
+    - '--location=us-west4-b'
+    - '--bucket=${PROJECT_ID}.appspot.com'
+    - '--name=myartifact.jar'
+    - '--file=new-directory/target/myartifact.jar'
