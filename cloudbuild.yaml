@@ -1,4 +1,10 @@
 steps:
+  # Remove existing files in the current working directory
+  - name: 'gcr.io/cloud-builders/bash'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - 'rm -rf *'
   # Checkout the source code from GitHub
   - name: 'gcr.io/cloud-builders/git'
     args: ['clone', '--branch', 'master', 'https://github.com/Simrankhott/cloudbuild.git', '.']
