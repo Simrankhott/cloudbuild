@@ -53,3 +53,7 @@ License
 This project is licensed under the MIT License.
 
 Feel free to customize this README file based on your specific pipeline script and deployment process.
+
+<img width="960" alt="codebuild" src="https://github.com/Simrankhott/gcp-cloudbuild/assets/91006102/e74ee811-1ffc-45ae-8605-521495829a14">
+
+
